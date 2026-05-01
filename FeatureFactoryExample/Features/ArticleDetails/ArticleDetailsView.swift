@@ -9,6 +9,39 @@ struct ArticleDetailsView: View {
     let viewModel: ArticleDetailsViewModel
 
     var body: some View {
-        Text("article")
+        ScrollView {
+            if let article = viewModel.article {
+                content(for: article)
+            } else {
+                ProgressView()
+                    .padding(.top, 40)
+            }
+        }
+        .navigationTitle(viewModel.article?.title ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewModel.viewDidAppear()
+        }
+    }
+
+    private func content(for article: Article) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(article.title)
+                .font(.largeTitle.bold())
+            HStack(spacing: 8) {
+                Text(article.author)
+                Text("·")
+                Text(article.publishedAt, style: .date)
+            }
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            Text(article.summary)
+                .font(.title3)
+                .foregroundStyle(.secondary)
+            Text(article.body)
+                .font(.body)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(20)
     }
 }

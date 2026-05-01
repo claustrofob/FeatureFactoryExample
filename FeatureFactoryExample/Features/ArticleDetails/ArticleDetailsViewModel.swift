@@ -7,9 +7,19 @@ import Foundation
 
 @Observable
 final class ArticleDetailsViewModel {
-    private let id: String
+    private let id: Article.ID
 
-    init(id: String) {
+    private(set) var article: Article?
+
+    init(id: Article.ID) {
         self.id = id
+    }
+
+    private func load() async {
+        article = await ArticlesRepository.article(id: id)
+    }
+
+    func viewDidAppear() {
+        Task { await load() }
     }
 }

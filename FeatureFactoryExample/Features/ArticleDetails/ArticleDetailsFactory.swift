@@ -6,7 +6,7 @@
 import SwiftUI
 
 enum ArticleDetailsFactory {
-    static func view(id: String) -> some View {
+    static func view(id: Article.ID) -> some View {
         FeatureFactory.view(
             input: id,
             viewModelFactory: { ArticleDetailsViewModel(id: $0) },
