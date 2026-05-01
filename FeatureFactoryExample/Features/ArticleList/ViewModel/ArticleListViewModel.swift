@@ -6,17 +6,13 @@
 import Foundation
 
 @Observable
-final class ArticleDetailsViewModel {
-    private let id: Article.ID
+final class ArticleListViewModel: ArticleListViewModelProtocol {
+    var articles: [Article] = []
 
-    private(set) var article: Article?
-
-    init(id: Article.ID) {
-        self.id = id
-    }
+    init() {}
 
     private func load() async {
-        article = await ArticlesRepository.article(id: id)
+        articles = await ArticlesRepository.loadAll()
     }
 
     func viewDidAppear() {

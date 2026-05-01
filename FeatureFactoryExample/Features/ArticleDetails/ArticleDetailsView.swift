@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct ArticleDetailsView: View {
-    let viewModel: ArticleDetailsViewModel
+    let viewModel: ArticleDetailsViewModelProtocol
 
     var body: some View {
         ScrollView {

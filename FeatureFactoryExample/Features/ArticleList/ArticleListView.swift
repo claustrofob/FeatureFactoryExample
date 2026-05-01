@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct ArticleListView: View {
-    let viewModel: ArticleListViewModel
+    let viewModel: ArticleListViewModelProtocol
 
     var body: some View {
         NavigationStack {
