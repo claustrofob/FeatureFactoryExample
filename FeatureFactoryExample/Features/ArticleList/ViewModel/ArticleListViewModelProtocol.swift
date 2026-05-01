@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol ArticleListViewModelProtocol: Observable {
+protocol ArticleListViewModelProtocol: AnyObject {
     var articles: [Article] { get }
 
     func viewDidAppear()
