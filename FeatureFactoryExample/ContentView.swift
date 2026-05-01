@@ -7,7 +7,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ArticleListFactory.view()
+        TimelineView(.animation) { _ in
+            ArticleListFactory.view()
+        }
     }
 }
 

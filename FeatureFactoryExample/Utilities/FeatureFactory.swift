@@ -6,23 +6,33 @@
 import SwiftUI
 
 struct FeatureFactory<Input: Hashable, Content: View, ViewModel: Observable> {
+    private class ViewModelState {
+        private let viewModelFactory: () -> ViewModel
+        lazy var viewModel = viewModelFactory()
+
+        init(_ viewModelFactory: @autoclosure @escaping () -> ViewModel) {
+            self.viewModelFactory = viewModelFactory
+        }
+    }
+
     private struct RootView: View {
-        @State private var viewModel: ViewModel?
+        @State private var state: ViewModelState
 
         let input: Input
-        let viewModelFactory: (Input) -> ViewModel
         let viewFactory: (ViewModel) -> Content
 
+        init(
+            input: Input,
+            viewModelFactory: @escaping (Input) -> ViewModel,
+            viewFactory: @escaping (ViewModel) -> Content
+        ) {
+            self.input = input
+            _state = State(initialValue: ViewModelState(viewModelFactory(input)))
+            self.viewFactory = viewFactory
+        }
+
         var body: some View {
-            ZStack {
-                if let viewModel {
-                    viewFactory(viewModel)
-                }
-            }
-            .task {
-                guard viewModel == nil else { return }
-                viewModel = viewModelFactory(input)
-            }
+            viewFactory(state.viewModel)
         }
     }
 
