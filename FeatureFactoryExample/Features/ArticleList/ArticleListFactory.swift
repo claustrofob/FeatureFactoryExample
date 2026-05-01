@@ -5,9 +5,9 @@
 
 import SwiftUI
 
-enum ArticleListFactory {
-    static func view() -> some View {
-        FeatureFactory.view(
+struct ArticleListFactory: Hashable {
+    func view() -> some View {
+        FeatureFactoryV2.view(
             viewModelFactory: { _ in
                 ArticleListViewModel(repository: ArticlesRepository())
             },

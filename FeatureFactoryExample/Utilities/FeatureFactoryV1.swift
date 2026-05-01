@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct FeatureFactory<Input: Hashable, Content: View, ViewModel: Observable> {
+struct FeatureFactoryV1<Input: Hashable, Content: View, ViewModel: Observable> {
     private struct RootView: View {
         @State private var viewModel: ViewModel?
 

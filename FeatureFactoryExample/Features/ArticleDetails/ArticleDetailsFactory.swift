@@ -5,9 +5,11 @@
 
 import SwiftUI
 
-enum ArticleDetailsFactory {
-    static func view(id: Article.ID) -> some View {
-        FeatureFactory.view(
+struct ArticleDetailsFactory: Hashable {
+    let id: Article.ID
+
+    func view() -> some View {
+        FeatureFactoryV2.view(
             input: id,
             viewModelFactory: {
                 ArticleDetailsViewModel(id: $0, repository: ArticlesRepository())

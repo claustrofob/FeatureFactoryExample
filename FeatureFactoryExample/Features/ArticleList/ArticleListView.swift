@@ -13,7 +13,7 @@ struct ArticleListView<ViewModel: ArticleListViewModelProtocol>: View {
             ScrollView {
                 LazyVStack(spacing: 12) {
                     ForEach(viewModel.articles) { article in
-                        NavigationLink(value: article.id) {
+                        NavigationLink(value: ArticleDetailsFactory(id: article.id)) {
                             ArticleRow(article: article)
                         }
                         .buttonStyle(.plain)
@@ -23,8 +23,8 @@ struct ArticleListView<ViewModel: ArticleListViewModelProtocol>: View {
                 .padding(.vertical, 12)
             }
             .navigationTitle("Articles")
-            .navigationDestination(for: String.self) { id in
-                ArticleDetailsFactory.view(id: id)
+            .navigationDestination(for: ArticleDetailsFactory.self) { factory in
+                factory.view()
             }
         }
         .onAppear {
