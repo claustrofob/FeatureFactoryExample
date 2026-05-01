@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ArticleDetailsView.swift
 //  FeatureFactoryExample
 //
 //  Created by Mikalai Zmachynski on 01/05/2026.
@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ArticleDetailsView: View {
+    let viewModel: ArticleDetailsViewModel
+    
     var body: some View {
-        ArticleListFactory.view()
+        Text("article")
     }
-}
-
-#Preview {
-    ContentView()
 }
