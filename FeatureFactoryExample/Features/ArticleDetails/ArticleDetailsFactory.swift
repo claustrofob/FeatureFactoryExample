@@ -1,13 +1,11 @@
 //
-//  ArticleDetailsFactory.swift
-//  FeatureFactoryExample
-//
-//  Created by Mikalai Zmachynski on 01/05/2026.
+//  Created by Mikalai Zmachynski.
+//  Copyright © 2026 Mikalai Zmachynski. All rights reserved.
 //
 
 import SwiftUI
 
-struct ArticleDetailsFactory {
+enum ArticleDetailsFactory {
     static func view(id: String) -> some View {
         FeatureFactory.view(
             input: id,

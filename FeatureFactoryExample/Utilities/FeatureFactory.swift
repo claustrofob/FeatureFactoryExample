@@ -1,8 +1,6 @@
 //
-//  FeatureFactory.swift
-//  FeatureFactoryExample
-//
-//  Created by Mikalai Zmachynski on 01/05/2026.
+//  Created by Mikalai Zmachynski.
+//  Copyright © 2026 Mikalai Zmachynski. All rights reserved.
 //
 
 import SwiftUI
@@ -10,11 +8,11 @@ import SwiftUI
 struct FeatureFactory<Input: Hashable, Content: View, ViewModel: Observable> {
     private struct RootView: View {
         @State private var viewModel: ViewModel?
-        
+
         let input: Input
         let viewModelFactory: (Input) -> ViewModel
         let viewFactory: (ViewModel) -> Content
-        
+
         var body: some View {
             ZStack {
                 if let viewModel {
@@ -27,7 +25,7 @@ struct FeatureFactory<Input: Hashable, Content: View, ViewModel: Observable> {
             }
         }
     }
-    
+
     static func view(
         input: Input,
         viewModelFactory: @escaping (Input) -> ViewModel,
@@ -39,7 +37,7 @@ struct FeatureFactory<Input: Hashable, Content: View, ViewModel: Observable> {
             viewFactory: viewFactory
         ).id(input)
     }
-    
+
     static func view(
         viewModelFactory: @escaping (Input) -> ViewModel,
         viewFactory: @escaping (ViewModel) -> Content
