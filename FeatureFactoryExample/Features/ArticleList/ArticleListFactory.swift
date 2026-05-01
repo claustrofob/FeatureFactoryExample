@@ -8,7 +8,9 @@ import SwiftUI
 enum ArticleListFactory {
     static func view() -> some View {
         FeatureFactory.view(
-            viewModelFactory: { _ in ArticleListViewModel() },
+            viewModelFactory: { _ in
+                ArticleListViewModel(repository: ArticlesRepository())
+            },
             viewFactory: { ArticleListView(viewModel: $0) }
         )
     }

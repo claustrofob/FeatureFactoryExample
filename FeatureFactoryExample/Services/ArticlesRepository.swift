@@ -5,16 +5,16 @@
 
 import Foundation
 
-enum ArticlesRepository {
-    static func loadAll() async -> [Article] {
+struct ArticlesRepository: ArticlesRepositoryProtocol {
+    func loadAll() async -> [Article] {
         sampleArticles
     }
 
-    static func article(id: String) async -> Article? {
+    func article(id: Article.ID) async -> Article? {
         sampleArticles.first { $0.id == id }
     }
 
-    private static let sampleArticles: [Article] = [
+    private let sampleArticles: [Article] = [
         Article(
             id: "1",
             title: "The Quiet Power of Small Habits",

@@ -7,12 +7,16 @@ import Foundation
 
 @Observable
 final class ArticleListViewModel: ArticleListViewModelProtocol {
+    private let repository: ArticlesRepositoryProtocol
+
     var articles: [Article] = []
 
-    init() {}
+    init(repository: ArticlesRepositoryProtocol) {
+        self.repository = repository
+    }
 
     private func load() async {
-        articles = await ArticlesRepository.loadAll()
+        articles = await repository.loadAll()
     }
 
     func viewDidAppear() {

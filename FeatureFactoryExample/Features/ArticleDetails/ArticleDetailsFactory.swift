@@ -9,7 +9,9 @@ enum ArticleDetailsFactory {
     static func view(id: Article.ID) -> some View {
         FeatureFactory.view(
             input: id,
-            viewModelFactory: { ArticleDetailsViewModel(id: $0) },
+            viewModelFactory: {
+                ArticleDetailsViewModel(id: $0, repository: ArticlesRepository())
+            },
             viewFactory: { ArticleDetailsView(viewModel: $0) }
         )
     }
