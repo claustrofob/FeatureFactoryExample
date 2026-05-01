@@ -9,7 +9,8 @@ enum ArticleListFactory {
     static func view() -> some View {
         FeatureFactory.view(
             viewModelFactory: { _ in
-                ArticleListViewModel(repository: ArticlesRepository())
+                print("--- ok")
+                return ArticleListViewModel(repository: ArticlesRepository())
             },
             viewFactory: { ArticleListView(viewModel: $0) }
         )

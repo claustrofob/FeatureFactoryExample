@@ -5,8 +5,8 @@
 
 import SwiftUI
 
-struct ArticleDetailsView: View {
-    let viewModel: ArticleDetailsViewModelProtocol
+struct ArticleDetailsView<ViewModel: ArticleDetailsViewModelProtocol>: View {
+    let viewModel: ViewModel
 
     var body: some View {
         ScrollView {

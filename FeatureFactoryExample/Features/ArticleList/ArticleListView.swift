@@ -5,8 +5,8 @@
 
 import SwiftUI
 
-struct ArticleListView: View {
-    let viewModel: ArticleListViewModelProtocol
+struct ArticleListView<ViewModel: ArticleListViewModelProtocol>: View {
+    let viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
