@@ -7,7 +7,8 @@ import SwiftUI
 
 // An improved version of `FeatureFactory` that uses a `lazy var` to access the view model.
 // This avoids any delay in instantiating the view model, eliminating the flickering side
-// effects present in the original implementation.
+// effects present in the original implementation. However it introduces a small overhead
+// by allocating extra ViewModelState class on every view update.
 
 struct FeatureFactoryV2<Input: Hashable, Content: View, ViewModel: Observable> {
     private class ViewModelState {
